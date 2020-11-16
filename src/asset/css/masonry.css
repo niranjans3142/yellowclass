@@ -1,0 +1,11 @@
+.masonry-floating-heading{
+  display: flex;
+  justify-content: center;
+}
+@media screen and (min-width: 1200px){
+  .masonry-image-collection{
+    overflow-x: hidden;
+    margin-left: -5%;
+    width: 110%;
+  }
+}

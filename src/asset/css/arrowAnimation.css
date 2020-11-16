@@ -1,0 +1,35 @@
+
+.arrow-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.arrow {
+  border-color:transparent;
+  border-style:solid;
+  border-width:0 2em;
+  display:block;
+  height:0;
+  text-indent:-9999px;
+  transform-origin: 50% 50%;
+  width:0;
+  margin-top: 20px;
+}
+.animate-up {
+  border-bottom:2em solid #00b6f1;
+
+  animation:         arrow-jump 1s infinite; /* IE 10+, Fx 29+ */
+}
+.animate-down {
+  border-top:2em solid #00b6f1;
+
+  animation:         arrow-jump 1s infinite; /* IE 10+, Fx 29+ */
+}
+@keyframes arrow-jump{
+  0%   {
+    transform: translateY(-10px);
+  }
+  100% {
+        transform: translateY(10px);
+    }
+}
