@@ -27,6 +27,10 @@
 .padding-5-imp{
   padding: 5px!important;
 }
+
+.masonry-custom{
+  padding: 5px 2px 5px 6px;
+}
 .border-nonw-imp{
   border: 0px!important;
 }
@@ -52,6 +56,7 @@
   display: flex;
   align-items: center;
   background: #1e7be2;
+  padding: 0 8px;
 }
 .carousel-left-arrow::after{
   content: ' \003C';
@@ -63,6 +68,7 @@
   display: flex;
   align-items: center;
   background: #1e7be2;
+  padding: 0 8px;
 }
 .carousel-right-arrow::after{
   content: ' \003E';

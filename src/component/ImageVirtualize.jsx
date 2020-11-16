@@ -38,7 +38,7 @@ if (window.outerWidth < 700) {
 
   MasonryWidth = window.outerWidth;
   MasonryHeight = window.outerHeight;
-  columnWidth = window.outerWidth / 2;
+  columnWidth = window.outerWidth / 2 - 10;
   defaultHeight = 250;
   defaultWidth = columnWidth;
   cellPositionerConfig = {
@@ -223,7 +223,7 @@ export default function ImageVirtualize(props) {
 
   return (
     <>
-      <div>
+      <div className="masonry-custom">
         <ImageMeasurer
           items={images}
           image={(item) => item.image}
