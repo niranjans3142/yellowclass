@@ -31,7 +31,6 @@ export default class Splash extends Component {
       .then(toJson)
       .then((json) => {
         this.setState({ listOfImages: json })
-        console.log(this.state.listOfImages)
       });
   }
 
@@ -40,7 +39,7 @@ export default class Splash extends Component {
       <>
         {this.state.listOfImages.length > 0 ?
           <div id="splash-container" className="splash-container">
-            <ImageVirtualize listOfImages={this.state.listOfImages}></ImageVirtualize>
+            <ImageVirtualize listOfImages={this.state.listOfImages} counterReducerState={this.props.counterReducerState}></ImageVirtualize>
           </div>
           :
           <div></div>

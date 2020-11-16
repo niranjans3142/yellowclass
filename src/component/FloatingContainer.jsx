@@ -18,12 +18,16 @@ export default class FloatingContainer extends Component {
         this.setState({
           bottomOfPage: true
         });
-        document.getElementById("masonry-floating-wrapper").classList.remove("translate-bottom")
-        document.getElementById("masonry-floating-wrapper").classList.add("translate-top")
+        if(document.getElementById("masonry-floating-wrapper")){
+          document.getElementById("masonry-floating-wrapper").classList.remove("translate-bottom")
+          document.getElementById("masonry-floating-wrapper").classList.add("translate-top")
+        }
       }
       else if (window.innerHeight + window.scrollY >= document.body.offsetHeight-100) {
         if(this.state.bottomOfPage){
-          document.getElementById("masonry-floating-wrapper").classList.remove("translate-top")
+          if(document.getElementById("masonry-floating-wrapper")){
+            document.getElementById("masonry-floating-wrapper").classList.remove("translate-top")
+          }
           this.setState({
             bottomOfPage: false
           });

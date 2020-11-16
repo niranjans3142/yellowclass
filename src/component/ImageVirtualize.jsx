@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { render } from "react-dom";
+import classNames        from 'classnames';
+
 import {
   CellMeasurer,
   CellMeasurerCache,
@@ -10,6 +12,10 @@ import ImageMeasurer from "react-virtualized-image-measurer";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Modal from "react-bootstrap/Modal";
+
+/* REDUX */
+import {useSelector,useDispatch} from 'react-redux';
+import {increment} from '../actions/UIAction'
 
 const keyMapper = (item, index) => item.image || index;
 let OpenCarouselModal = false;
@@ -32,10 +38,7 @@ let cellPositionerConfig = {
   columnWidth,
   spacer: 10,
 };
-console.log("---1231231231231231231212312---");
 if (window.outerWidth < 700) {
-  console.log("--1--");
-
   MasonryWidth = window.outerWidth;
   MasonryHeight = window.outerHeight;
   columnWidth = window.outerWidth / 2 - 10;
@@ -48,8 +51,6 @@ if (window.outerWidth < 700) {
     spacer: 10,
   };
 } else if (window.outerWidth > 700 && window.outerWidth < 1000) {
-  console.log("--2--");
-
   MasonryWidth = window.outerWidth;
   MasonryHeight = window.outerHeight;
   columnWidth = window.outerWidth / 3;
@@ -62,8 +63,6 @@ if (window.outerWidth < 700) {
     spacer: 10,
   };
 } else if (window.outerWidth > 1000 && window.outerWidth < 1500) {
-  console.log("--3--");
-
   MasonryWidth = window.outerWidth;
   MasonryHeight = window.outerHeight;
   columnWidth = window.outerWidth / 4;
@@ -76,8 +75,6 @@ if (window.outerWidth < 700) {
     spacer: 10,
   };
 } else {
-  console.log("--4--");
-
   MasonryWidth = window.outerWidth;
   MasonryHeight = 600;
   columnWidth = window.outerWidth / 6;
@@ -98,23 +95,18 @@ const MasonryComponent = ({
   openModal,
   imageInModal,
 }) => {
+  const dispatch = useDispatch();
+
   const openCarouselModal = (item, index) => {
-    console.log(imageInModal);
-    console.log("open modal");
     OpenCarouselModal = true;
-    console.log(item);
-    console.log(index);
     imageInModal = index;
     openModal(item, index);
-    console.log(imageInModal);
-    console.log("--end--");
   };
 
   const cellRenderer = ({ index, key, parent, style }) => {
     const { item, size } = itemsWithSizes[index];
     const height = columnWidth * (size.height / size.width) || defaultHeight;
     style.width = columnWidth;
-    console.log(style);
 
     return (
       <CellMeasurer cache={cache} index={index} key={key} parent={parent}>
@@ -122,7 +114,7 @@ const MasonryComponent = ({
           style={style}
           className="masonry-container"
           onClick={() => {
-            openCarouselModal(item, index);
+            dispatch(increment(index));openCarouselModal(item, index);
           }}
         >
           {item.image && (
@@ -164,6 +156,8 @@ export default function ImageVirtualize(props) {
   let [imageInModal, setImageInModal] = useState(0);
 
   let [masonryRef, setMasonryRef] = useState(null);
+  const dispatch = useDispatch();
+
 
   const imageCache = () => {
     let cacheImage = props.listOfImages.map((item, index) => {
@@ -174,6 +168,10 @@ export default function ImageVirtualize(props) {
     });
     setNoCacheList(cacheImage.slice());
     setImages(cacheImage.slice());
+    setImageInModal(props.counterReducerState)
+    console.log("+++++++++++++++++++++++++++")
+    console.log(imageInModal)
+    console.log(props.counterReducerState)
   };
 
   useEffect(() => {
@@ -195,28 +193,20 @@ export default function ImageVirtualize(props) {
   };
 
   const nextImage = () => {
-    if(imageInModal<props.listOfImages.length){
-      console.log("next")
-      setImageInModal(imageInModal+1);
-    }
-    if(imageInModal==props.listOfImages.length-1){
+    if(props.counterReducerState==props.listOfImages.length-2){
       document.querySelector(".carousel-right-arrow").classList.add("non-clickable")
     }
 
-    if(imageInModal==0){
+    if(props.counterReducerState==0){
       document.querySelector(".carousel-left-arrow").classList.remove("non-clickable")
     }
   }
   const previousImage = () => {
-    if(imageInModal>0){
-      console.log("previous")
-      setImageInModal(imageInModal-1);
-    }
-    if(imageInModal<=1){
+    if(props.counterReducerState<=1){
       document.querySelector(".carousel-left-arrow").classList.add("non-clickable")
     }
 
-    if(imageInModal==props.listOfImages.length){
+    if(props.counterReducerState<props.listOfImages.length){
       document.querySelector(".carousel-right-arrow").classList.remove("non-clickable")
     }
   }
@@ -263,12 +253,14 @@ export default function ImageVirtualize(props) {
           </Modal.Header>
           <Modal.Body className="padding-5-imp">
             <div className="carousel-container">
-              <div className="carousel-left-arrow non-clickable" onClick={() => previousImage()}></div>
+              <div className={classNames("carousel-left-arrow", {'non-clickable' : props.counterReducerState==0})}
+              onClick={() => {previousImage();if(props.counterReducerState>0)dispatch(increment(props.counterReducerState-1));}}></div>
               <div className="carousel-data">
-                <img className="modal-image" src={props.listOfImages[imageInModal].urls.raw} />
-                <p className="modal-text">{props.listOfImages[imageInModal].alt_description}</p>
+                <img className="modal-image" src={props.listOfImages[props.counterReducerState].urls.raw} />
+                <p className="modal-text">{props.listOfImages[props.counterReducerState].alt_description}</p>
               </div>
-              <div className="carousel-right-arrow"  onClick={() => nextImage()}></div>
+              <div className={classNames("carousel-right-arrow", {'non-clickable' : props.counterReducerState==props.listOfImages.length-1})}
+              className="carousel-right-arrow"  onClick={() => {nextImage();if(props.counterReducerState<props.listOfImages.length-1)dispatch(increment(props.counterReducerState+1));}}></div>
             </div>
           </Modal.Body>
         </Modal>

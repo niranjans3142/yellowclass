@@ -4,9 +4,21 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+/* REDUX INTEGRATION STARTS */
+import { createStore } from 'redux';
+import stateRedux from './reducers/Reducer';
+import {Provider} from 'react-redux'
+
+let reduxStore = createStore(stateRedux)
+//display in console
+reduxStore.subscribe( () => {console.log(reduxStore.getState())})
+/* REDUX INTEGRATION ENDS */
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={reduxStore}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

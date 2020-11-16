@@ -4,6 +4,11 @@ import Splash from "./Splash";
 import masonry from "../asset/css/masonry.css";
 
 export default class Mansonry extends Component {
+  constructor(props){
+    super(props);
+  }
+  componentDidMount(){
+  }
   render() {
     return (
       <>
@@ -11,7 +16,7 @@ export default class Mansonry extends Component {
           <FloatingContainer></FloatingContainer>
         </div>
         <div className="masonry-image-collection">
-          <Splash></Splash>
+          <Splash counterReducerState={this.props.counterReducerState}></Splash>
         </div>
       </>
     );
