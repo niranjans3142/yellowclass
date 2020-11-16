@@ -43,8 +43,8 @@ export default class Splash extends Component {
             <ImageVirtualize listOfImages={this.state.listOfImages}></ImageVirtualize>
           </div>
           :
-          <div></div>}
-          
+          <div></div>
+        }
       </>
     );
   }
