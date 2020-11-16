@@ -24,6 +24,9 @@ export default class FloatingContainer extends Component {
       else if (window.innerHeight + window.scrollY >= document.body.offsetHeight-100) {
         if(this.state.bottomOfPage){
           document.getElementById("masonry-floating-wrapper").classList.remove("translate-top")
+          this.setState({
+            bottomOfPage: false
+          });
         }
       }
       else if(window.scrollY<10){
@@ -44,13 +47,9 @@ export default class FloatingContainer extends Component {
           <button className="masonry-floating-button">subscribe</button>
           <div className="arrow-container">
             {!this.state.bottomOfPage ? (
-              <a href="#" className="arrow animate-down">
-                Down
-              </a>
+              <a href="#" className="arrow animate-down"></a>
             ) : (
-                <a href="#" className="arrow animate-up">
-                  Up
-                </a>
+                <a href="#" className="arrow animate-up"></a>
               )}
           </div>
         </div>
