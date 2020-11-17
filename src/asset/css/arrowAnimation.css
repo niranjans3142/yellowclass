@@ -16,12 +16,12 @@
   margin-top: 20px;
 }
 .animate-up {
-  border-bottom:2em solid #00b6f1;
+  border-bottom:2em solid #1e7be2;
 
   animation:         arrow-jump 1s infinite; /* IE 10+, Fx 29+ */
 }
 .animate-down {
-  border-top:2em solid #00b6f1;
+  border-top:2em solid #1e7be2;
 
   animation:         arrow-jump 1s infinite; /* IE 10+, Fx 29+ */
 }

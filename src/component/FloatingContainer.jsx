@@ -43,19 +43,25 @@ export default class FloatingContainer extends Component {
   componentWillUnmount(){
     window.removeEventListener("scroll", () => {});
   }
+/*   scrollTop(){
+    window.scrollTo({top: 500, behavior: 'smooth'});
+  }
+  scrollBottom(){
+    window.scrollTo({top: -500, behavior: 'smooth'});
+  } */
   render() {
     return (
       <>
         <div id="masonry-floating-wrapper" className="masonry-floating-wrapper">
-          <h1 className="masonry-floating-heading">Heading-Button</h1>
+          <h1 className="masonry-floating-heading">Heading to subscribe</h1>
           <button className="masonry-floating-button">subscribe</button>
-          <div className="arrow-container">
+          {/* <div className="arrow-container">
             {!this.state.bottomOfPage ? (
-              <a href="#" className="arrow animate-down"></a>
+              <a href="#" onClick={() => {this.scrollTop()}} className="arrow animate-down"></a>
             ) : (
-                <a href="#" className="arrow animate-up"></a>
+                <a href="#" onClick={() => {this.scrollBottom()}} className="arrow animate-up"></a>
               )}
-          </div>
+          </div> */}
         </div>
       </>
     );

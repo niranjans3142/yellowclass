@@ -50,7 +50,7 @@ if (window.outerWidth < 700) {
     columnWidth,
     spacer: 10,
   };
-} else if (window.outerWidth > 700 && window.outerWidth < 1000) {
+} else if (window.outerWidth > 700 && window.outerWidth < 1200) {
   MasonryWidth = window.outerWidth;
   MasonryHeight = window.outerHeight;
   columnWidth = window.outerWidth / 3;
@@ -62,7 +62,7 @@ if (window.outerWidth < 700) {
     columnWidth,
     spacer: 10,
   };
-} else if (window.outerWidth > 1000 && window.outerWidth < 1500) {
+} else if (window.outerWidth > 1200 && window.outerWidth < 1600) {
   MasonryWidth = window.outerWidth;
   MasonryHeight = window.outerHeight;
   columnWidth = window.outerWidth / 4;
@@ -246,7 +246,7 @@ export default function ImageVirtualize(props) {
         <Modal
           show={showCarouselModal}
           onHide={() => setShowCarouselModal(false)}
-          dialogClassName="modal-90w"
+          dialogClassName="modal-90w custom-modal-config"
           aria-labelledby="example-custom-modal-styling-title"
         >
           <Modal.Header className="border-nonw-imp" closeButton>
