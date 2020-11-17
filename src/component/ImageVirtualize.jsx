@@ -53,7 +53,7 @@ if (window.outerWidth < 700) {
 } else if (window.outerWidth > 700 && window.outerWidth < 1200) {
   MasonryWidth = window.outerWidth;
   MasonryHeight = window.outerHeight;
-  columnWidth = window.outerWidth / 3;
+  columnWidth = window.outerWidth / 3 - 20;
   defaultHeight = 250;
   defaultWidth = columnWidth;
   cellPositionerConfig = {
@@ -65,7 +65,7 @@ if (window.outerWidth < 700) {
 } else if (window.outerWidth > 1200 && window.outerWidth < 1600) {
   MasonryWidth = window.outerWidth;
   MasonryHeight = window.outerHeight;
-  columnWidth = window.outerWidth / 4;
+  columnWidth = window.outerWidth / 4 - 20;
   defaultHeight = 250;
   defaultWidth = columnWidth;
   cellPositionerConfig = {
@@ -77,7 +77,7 @@ if (window.outerWidth < 700) {
 } else {
   MasonryWidth = window.outerWidth;
   MasonryHeight = 600;
-  columnWidth = window.outerWidth / 6;
+  columnWidth = window.outerWidth / 6 - 20;
   defaultHeight = 250;
   defaultWidth = columnWidth;
   cellPositionerConfig = {

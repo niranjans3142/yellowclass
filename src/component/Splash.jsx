@@ -27,7 +27,7 @@ export default class Splash extends Component {
     });
 
     unsplash.collections
-      .getCollectionPhotos(881463, 1, 512, "portrait")
+      .getCollectionPhotos(327760, 1, 1807, "landscape")
       .then(toJson)
       .then((json) => {
         this.setState({ listOfImages: json })

@@ -28,8 +28,16 @@
   padding: 5px!important;
 }
 
-.masonry-custom{
-  padding: 5px 0px 5px 6px;
+@media screen and (min-width: 700px){
+  .masonry-custom{
+    padding: 5px 0px 5px 0px;
+    margin-left: 50px;
+  }
+}
+@media screen and (max-width: 700px){
+  .masonry-custom{
+    padding: 5px 0px 5px 6px;
+  }
 }
 .border-nonw-imp{
   border: 0px!important;
