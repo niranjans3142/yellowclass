@@ -169,9 +169,6 @@ export default function ImageVirtualize(props) {
     setNoCacheList(cacheImage.slice());
     setImages(cacheImage.slice());
     setImageInModal(props.counterReducerState)
-    console.log("+++++++++++++++++++++++++++")
-    console.log(imageInModal)
-    console.log(props.counterReducerState)
   };
 
   useEffect(() => {

@@ -24,6 +24,7 @@ export default class FloatingContainer extends Component {
         }
       }
       else if (window.innerHeight + window.scrollY >= document.body.offsetHeight-100) {
+        // you're at the bottom of the page
         if(this.state.bottomOfPage){
           if(document.getElementById("masonry-floating-wrapper")){
             document.getElementById("masonry-floating-wrapper").classList.remove("translate-top")
@@ -34,6 +35,7 @@ export default class FloatingContainer extends Component {
         }
       }
       else if(window.scrollY<10){
+        // you're at the top of the page
         this.setState({
           bottomOfPage: false
         });
